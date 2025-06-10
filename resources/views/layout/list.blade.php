@@ -6,43 +6,37 @@
             <thead class="table">
             <tr>
                 <th>ردیف</th>
-                <th>عنوان کار</th>
+                <th>عنوان تسک</th>
+                <th>توضیحات </th>
                 <th>وضعیت</th>
                 <th>تاریخ ایجاد</th>
                 <th>عملیات</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>خرید کردن</td>
-                <td><span class="badge bg-warning text-dark">در جریان</span></td>
-                <td>1402/03/12</td>
-                <td>
-                    <button class="btn btn-success btn-sm">انجام شد</button>
-                    <button class="btn btn-danger btn-sm">حذف</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>آماده کردن گزارش</td>
-                <td><span class="badge bg-danger">تکمیل نشده</span></td>
-                <td>1402/03/14</td>
-                <td>
-                    <button class="btn btn-success btn-sm">انجام شد</button>
-                    <button class="btn btn-danger btn-sm">حذف</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>تماس با مشتری</td>
-                <td><span class="badge bg-success">انجام شده</span></td>
-                <td>1402/03/10</td>
-                <td>
-                    <button class="btn btn-secondary btn-sm" disabled>انجام شد</button>
-                    <button class="btn btn-danger btn-sm">حذف</button>
-                </td>
-            </tr>
+            @foreach($todos as $todo)
+                <tr>
+                    <td>{{$todo->id}}</td>
+                    <td>{{$todo->title}}</td>
+                    <td class="text-black-50 text-sm" style="font-size: 12px !important;">{{$todo->description}}</td>
+                    <td>
+                        @if($todo->completed == 0)
+                           <span class="badge bg-warning text-dark">
+                               درجریان
+                        @elseif($todo->completed == 1)
+                           <span class="badge bg-success">
+                               تکمیل شده
+                        @endif
+                        </span>
+                    </td>
+                    <td>{{verta($todo->deadline)-> format('Y/m/d')}}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm"> <i class="bi bi-check2-square"></i> </a>
+                        <a class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

@@ -51,6 +51,13 @@ return [
     */
 
     'channels' => [
+        'errors' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/MyApp.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => env('LOG_DAILY_DAYS', 30),
+            'replace_placeholders' => true,
+        ],
 
         'stack' => [
             'driver' => 'stack',
